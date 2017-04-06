@@ -13,7 +13,10 @@ class TaskController extends Controller
 
     public function index(Request $request)
     {
-        return view('tasks.index');
+        $tasks = $request->user()->tasks()->get();
+        return view('tasks.index', [
+            'tasks' => $tasks,
+        ]);
     }
 
     public function store(Request $request)
