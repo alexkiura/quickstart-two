@@ -27,5 +27,37 @@
         </form>
     </div>
 
-    <!-- Todo: Current Tasks -->
+    <!-- Current Tasks -->
+    @if (count($tasks) > 0)
+        <div class="panel panel-default">
+            <div class="panel-heading">Current tasks</div>
+
+            <div class="panel-body">
+                <table class="table table-striped task-table">
+                    <!-- Table headings -->
+                    <thead>
+                        <th>Task</th>
+                        <th>&nbsp;</th>
+                    </thead>
+
+                    <!--- Table body -->
+                    <tbody>
+                        @foreach ($tasks as $task)
+                            <tr>
+                                <!-- Task name -->
+                                <td class="table-text">
+                                    <div>{{ $task->name }}</div>
+                                </td>
+                                <td>
+                                    <!--TODO: Delete button -->
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+    @endif
 @endsection
