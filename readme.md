@@ -1,3 +1,3 @@
 # Task Manager
 
-A basic task manager built with Laravel
+A task manager application built with Laravel.
