@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Task;
 use App\Repositories\TaskRepository;
+use App\Mail\HireAdded;
+use Illuminate\Support\Facades\Mail;
 
 
 class TaskController extends Controller
@@ -47,10 +49,10 @@ class TaskController extends Controller
             'name' => 'required|max:255'
         ]);
 
-        $request->user()->tasks()->create([
+        $task = $request->user()->tasks()->create([
             'name' => $request->name,
         ]);
-
+        Mail::to('kiuraalex@gmail.com')->send(new HireAdded($task));
         return redirect('/tasks');
     }
 
