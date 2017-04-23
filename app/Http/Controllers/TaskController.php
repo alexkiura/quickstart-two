@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
+    public $hireAdded;
     /**
     * The Task repository instance
     *
@@ -43,7 +44,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, HireAdded $hireAdded)
     {
         $this->validate($request, [
             'name' => 'required|max:255'
@@ -52,7 +53,7 @@ class TaskController extends Controller
         $task = $request->user()->tasks()->create([
             'name' => $request->name,
         ]);
-        Mail::to('kiuraalex@gmail.com')->send(new HireAdded($task));
+        Mail::to('kiuraalex@gmail.com')->send(new hireAdded($task));
         return redirect('/tasks');
     }
 
